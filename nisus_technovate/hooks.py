@@ -145,6 +145,17 @@ app_license = "mit"
 # 	}
 # }
 
+# fixtures = [
+#     {
+#         "dt": "Custom Field",
+#         "filters": {"module": ["in", ["Nisus Customizations"]]}
+#     },
+#     {
+#         "dt": "Company",
+#         # "filters": {"module": ["in", ["Nxtgen"]]}
+#     }
+# ]
+
 # Scheduled Tasks
 # ---------------
 
