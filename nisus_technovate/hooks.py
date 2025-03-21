@@ -161,6 +161,12 @@ doc_events = {
   "Purchase Invoice": {
 		"on_submit": "nisus_technovate.private.py.purchase_invoice.on_submit"
 	},
+  "Sales Order": {
+		"on_submit": "nisus_technovate.private.py.sales_order.on_submit"
+	},
+  "Sales Invoice": {
+		"on_submit": "nisus_technovate.private.py.sales_invoice.on_submit"
+	},
 }
 
 fixtures = [
@@ -168,10 +174,10 @@ fixtures = [
         "dt": "Custom Field",
         "filters": {"module": ["in", ["Nisus Customizations"]]}
     },
-#     {
-#         "dt": "Company",
-#         # "filters": {"module": ["in", ["Nxtgen"]]}
-#     }
+    {
+        "dt": "Property Setter",
+        "filters": {"module": ["in", ["Nisus Customizations"]]}
+    },
 ]
 
 # Scheduled Tasks
