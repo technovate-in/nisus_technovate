@@ -153,8 +153,14 @@ doctype_js = {
 # }
 doc_events = {
 	"Purchase Order": {
-		"on_submit": "nisus_technovate.private.py.purchase_order.after_submit"
-	}
+		"on_submit": "nisus_technovate.private.py.purchase_order.on_submit"
+	},
+  "Purchase Receipt": {
+		"on_submit": "nisus_technovate.private.py.purchase_receipt.on_submit"
+	},
+  "Purchase Invoice": {
+		"on_submit": "nisus_technovate.private.py.purchase_invoice.on_submit"
+	},
 }
 
 # fixtures = [

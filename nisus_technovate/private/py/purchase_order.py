@@ -1,13 +1,14 @@
 import frappe
+from erpnext.buying.doctype.purchase_order.purchase_order import PurchaseOrder
 
-def after_submit(doc, method):
-    if doc.docstatus != 1: # Ensure PO is actually submitted
-        return
+def on_submit(doc, method):
+    # Call the default on_submit logic
+    # super(PurchaseOrder, doc).on_submit()
 
+    # Add your custom logic here
     create_po_for_nepl(doc, method)
 
 def create_po_for_nepl(doc, method):
-
     if doc.company == 'Cash':
         supplier_percent = doc.custom_distribution_percentage
 
@@ -40,10 +41,10 @@ def create_po_for_nepl(doc, method):
             new_item["supplier_quotation"] = ''
             new_item["supplier_quotation_item"] = ''
 
-            if new_po_doc.custom_distribution_based_on == 'Quantity':
+            if doc.custom_distribution_based_on == 'Quantity':
                 new_item["qty"] = int(item.qty * (supplier_percent / 100))
 
-            elif new_po_doc.custom_distribution_based_on == 'Amount':
+            elif doc.custom_distribution_based_on == 'Amount':
                 new_item["rate"] = float(round(item.rate * (supplier_percent / 100), 2))
                 print(new_item['rate'])
             
@@ -61,6 +62,8 @@ def create_po_for_nepl(doc, method):
 
         # Save and submit the new PO
         new_po_doc.save()
+        doc.custom_purchase_order_nepl = new_po_doc.name
+        doc.save()
         new_po_doc.submit()
 
         frappe.msgprint(
