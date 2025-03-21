@@ -163,16 +163,16 @@ doc_events = {
 	},
 }
 
-# fixtures = [
-#     {
-#         "dt": "Custom Field",
-#         "filters": {"module": ["in", ["Nisus Customizations"]]}
-#     },
+fixtures = [
+    {
+        "dt": "Custom Field",
+        "filters": {"module": ["in", ["Nisus Customizations"]]}
+    },
 #     {
 #         "dt": "Company",
 #         # "filters": {"module": ["in", ["Nxtgen"]]}
 #     }
-# ]
+]
 
 # Scheduled Tasks
 # ---------------
