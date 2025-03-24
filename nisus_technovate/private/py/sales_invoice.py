@@ -25,7 +25,7 @@ def create_nepl_sales_invoice(doc, method):
     sales_invoice_nepl.save()
 
     # doc.custom_sales_invoice_nepl = sales_invoice_nepl.name
-    frappe.db.set_value("Sales Order", sales_order_nepl, "custom_sales_invoice_nepl", sales_invoice_nepl.name)
+    frappe.db.set_value("Sales Invoice", doc.name, "custom_sales_invoice_nepl", sales_invoice_nepl.name)
     # doc.save()
     
     sales_invoice_nepl.submit()
