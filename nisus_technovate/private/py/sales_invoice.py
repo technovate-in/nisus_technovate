@@ -24,8 +24,9 @@ def create_nepl_sales_invoice(doc, method):
     sales_invoice_nepl = make_sales_invoice(sales_order_nepl)
     sales_invoice_nepl.save()
 
-    doc.custom_sales_invoice_nepl = sales_invoice_nepl.name
-    doc.save()
+    # doc.custom_sales_invoice_nepl = sales_invoice_nepl.name
+    frappe.db.set_value("Sales Order", sales_order_nepl, "custom_sales_invoice_nepl", sales_invoice_nepl.name)
+    # doc.save()
     
     sales_invoice_nepl.submit()
     frappe.msgprint(f"Purchase Receipt created for 'Nisus Energy Pvt Ltd' from {sales_order_nepl}")

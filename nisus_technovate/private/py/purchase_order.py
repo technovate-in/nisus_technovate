@@ -136,8 +136,9 @@ def create_po_for_nepl(doc, method):
 
         # Save and submit the new PO
         new_po_doc.save()
-        doc.custom_purchase_order_nepl = new_po_doc.name
-        doc.save()
+        # doc.custom_purchase_order_nepl = new_po_doc.name
+        frappe.db.set_value("Purchase Order", doc.name, "custom_purchase_order_nepl", new_po_doc.name)
+        # doc.save()
         new_po_doc.submit()
 
         frappe.msgprint(

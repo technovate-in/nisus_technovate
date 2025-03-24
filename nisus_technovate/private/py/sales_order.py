@@ -58,7 +58,8 @@ def create_so_for_nepl(doc, method):
                 new_so_doc.append("taxes", new_tax)
 
         new_so_doc.save()
-        doc.custom_sales_order_nepl = new_so_doc.name
-        doc.save()
+        # doc.custom_sales_order_nepl = new_so_doc.name
+        frappe.db.set_value("Sales Order", doc.name, "custom_sales_order_nepl", new_so_doc.name)
+        # doc.save()
         new_so_doc.submit()
         frappe.msgprint(f"New SO created for 'Nisus Energy Pvt Ltd' as per Customer ({customer_percent}%)")

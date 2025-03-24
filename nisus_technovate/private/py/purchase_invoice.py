@@ -75,8 +75,9 @@ def create_nepl_purchase_invoice(doc, method):
     # Generate the Purchase Invoice for Nisus
     purchase_invoice_nepl = make_invoice_method(source_name)
     purchase_invoice_nepl.save()
-    doc.custom_purchase_invoice_nepl = purchase_invoice_nepl.name
-    doc.save()
+    # doc.custom_purchase_invoice_nepl = purchase_invoice_nepl.name
+    frappe.db.set_value("Purchase Invoice", doc.name, "custom_purchase_invoice_nepl", purchase_invoice_nepl.name)
+    # doc.save()
     purchase_invoice_nepl.submit()
 
     frappe.msgprint(f"Purchase Invoice created for 'Nisus Energy Pvt Ltd' from {source_type} {source_name}")

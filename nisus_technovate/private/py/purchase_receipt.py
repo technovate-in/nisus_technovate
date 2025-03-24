@@ -24,8 +24,8 @@ def create_nepl_purchase_receipt(doc, method):
     nepl_pr = make_purchase_receipt(nepl_po)
     nepl_pr.save()
 
-    doc.custom_purchase_receipt_nepl = nepl_pr.name
-    doc.save()
-    
+    # doc.custom_purchase_receipt_nepl = nepl_pr.name
+    frappe.db.set_value("Purchase Order", nepl_po, "custom_purchase_receipt_nepl", nepl_pr.name)
+    # doc.save()
     nepl_pr.submit()
     frappe.msgprint(f"Purchase Receipt created for 'Nisus Energy Pvt Ltd' from {nepl_po}")
