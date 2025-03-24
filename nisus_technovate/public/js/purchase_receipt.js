@@ -43,6 +43,12 @@ function set_taxes(frm) {
                             frm.refresh();
                         }, 300);
                     }
+                    else {
+                        if (po.taxes) {
+                            frm.set_value("taxes", po.taxes);
+                            frm.refresh_field("taxes");
+                        }
+                    }
                 }
             }
         });
